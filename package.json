@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Library NodeJS API",
   "dependencies": {
     "express": "^4.21.2",
     "joi": "^17.13.3",
