@@ -1,7 +1,17 @@
-# library
+# Library App
 Library NodeJS API
 
-<h3>Developer Notes</h3>
+
+<h2>TechStack</h2>
+<ul>
+    <li>NodeJS</li>
+    <li>ExpressJS</li>
+    <li>JOI for validation</li>
+    <li>Sequelize as an ORM</li>
+    <li>SQLite as database</li>
+</ul>
+
+<h2>Developer Notes</h2>
 
 Fork the repository and execute the following command in ROOT_DIR
 
@@ -9,7 +19,7 @@ Fork the repository and execute the following command in ROOT_DIR
 
 Remember that one need to set force value as true for once to create the schema.
 
-<h4><b>Author</b></h4>
+<h2>Author</h2>
 Onur GÖKER 
 
 E-mail: info@onurgoker.com<br> 
