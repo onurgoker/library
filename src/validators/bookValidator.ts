@@ -1,8 +1,9 @@
 import Joi from 'joi';
 
 export const createBookSchema = Joi.object({
-  name: Joi.string().min(3).required(), // Kitap adı zorunlu ve en az 3 karakter olmalı
-  average_rating: Joi.string(), // Reyting sayı olmalı
+  name: Joi.string().required(), // Kitap adı zorunlu olmalı
+  total_rating: Joi.number(), // Reyting puanı sayı olmalı
+  rating_count: Joi.number(), // Reyting miktarı sayı olmalı
 });
 
 export const getBookSchema = Joi.object({

@@ -13,14 +13,14 @@ export const createUser = async (req: Request<{}, {}, CreateUserRequest>, res: R
     const result = await createUserService(userData);
     res.status(201).json({
       success: true,
-      message: 'Kullanıcı başarıyla oluşturuldu',
+      message: 'User has successfully been created!',
       data: result
     });
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ success: false, error: error.message });
     } else {
-      res.status(400).json({ success: false, error: 'Beklenmeyen bir hata oluştu' });
+      res.status(400).json({ success: false, error: 'Unexpected error occured!' });
     }
   }
  };

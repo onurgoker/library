@@ -5,7 +5,6 @@ import { createBookService, getAllBooksService, getBookService } from '../servic
 // Request body için interface tanımla
 interface CreateBookRequest {
  name: string;
- average_rating?: string;
 }
 
 export const createBook = async (req: Request<{}, {}, CreateBookRequest>, res: Response) => {
@@ -14,14 +13,14 @@ export const createBook = async (req: Request<{}, {}, CreateBookRequest>, res: R
    const result = await createBookService(bookData);
    res.status(201).json({
      success: true,
-     message: 'Kitap başarıyla oluşturuldu',
+     message: 'Book has been created successfully!',
      data: result
    });
  } catch (error) {
    if (error instanceof Error) {
      res.status(400).json({ success: false, error: error.message });
    } else {
-     res.status(400).json({ success: false, error: 'Beklenmeyen bir hata oluştu' });
+     res.status(400).json({ success: false, error: 'Unexpected error occured!' });
    }
  }
 };
@@ -40,7 +39,7 @@ export const getBook = async (req: Request, res: Response) => {
    if (error instanceof Error) {
      res.status(404).json({ success: false, error: error.message });
    } else {
-     res.status(400).json({ success: false, error: 'Beklenmeyen bir hata oluştu' });
+     res.status(400).json({ success: false, error: 'Unexpected error occured!' });
    }
  }
 };
@@ -56,7 +55,7 @@ export const getAllBooks = async (req: Request, res: Response) => {
    if (error instanceof Error) {
      res.status(400).json({ success: false, error: error.message });
    } else {
-     res.status(400).json({ success: false, error: 'Beklenmeyen bir hata oluştu' });
+     res.status(400).json({ success: false, error: 'Unexpected error occured!' });
    }
  }
 };

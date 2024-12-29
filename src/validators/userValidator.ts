@@ -8,6 +8,5 @@ export const getUserSchema = Joi.object({
   id: Joi.string().required(),
 });
 
-
 export const getUsersSchema = Joi.object({
 });

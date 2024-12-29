@@ -7,7 +7,6 @@ export class BorrowingRecord extends Model {
   public book_id!: number;
   public borrow_date!: Date;
   public return_date!: Date | null;
-  public rating!: number | null;
 }
 
 BorrowingRecord.init(
@@ -17,7 +16,6 @@ BorrowingRecord.init(
     book_id: { type: DataTypes.INTEGER, allowNull: false },
     borrow_date: { type: DataTypes.DATE, allowNull: false },
     return_date: { type: DataTypes.DATE, allowNull: true },
-    rating: { type: DataTypes.FLOAT, allowNull: true },
   },
   {
     sequelize,

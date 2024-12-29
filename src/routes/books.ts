@@ -5,8 +5,25 @@ import { createBook, getAllBooks, getBook } from '../controllers/bookController'
 
 const router = express.Router();
 
-router.get('/:id', validateRequest(getBookSchema, 'params'), getBook);
-router.get('/', validateRequest(getBooksSchema, 'params'), getAllBooks);
-router.post('/', validateRequest(createBookSchema, 'body'), createBook);
+// Kitap detayını almak için GET endpoint'i
+router.get(
+  '/:id',
+  validateRequest({ params: getBookSchema }), // params doğrulaması
+  getBook
+);
+
+// Tüm kitapları listelemek için GET endpoint'i
+router.get(
+  '/',
+  validateRequest({ params: getBooksSchema }), // params doğrulaması
+  getAllBooks
+);
+
+// Yeni kitap oluşturmak için POST endpoint'i
+router.post(
+  '/',
+  validateRequest({ body: createBookSchema }), // body doğrulaması
+  createBook
+);
 
 export default router;

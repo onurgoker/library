@@ -4,14 +4,16 @@ import sequelize from '../config/database';
 export class Book extends Model {
   public id!: number;
   public name!: string;
-  public average_rating!: number;
+  public total_rating!: number;
+  public rating_count!: number;
 }
 
 Book.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: false },
-    average_rating: { type: DataTypes.STRING, defaultValue: -1 },
+    total_rating: { type: DataTypes.NUMBER },
+    rating_count: { type: DataTypes.NUMBER },
   },
   {
     sequelize,
