@@ -1,5 +1,8 @@
 import express, { Application } from 'express';
-import sequelize from './config/database'; // Veritabanı bağlantısı
+import sequelize from './config/database';
+import userRoutes from './routes/users';
+import bookRoutes from './routes/books';
+import borrowRoutes from './routes/borrow'; // Borrow router'ını import et
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -7,23 +10,27 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 
-// Basit bir test endpoint'i
+
+//routes
+app.use('/users', userRoutes);
+app.use('/borrow', borrowRoutes);
+app.use('/books', bookRoutes);
 app.get('/', (req, res) => {
-  res.send('Library Management API çalışıyor!');
+  res.send('Library Management API works!');
 });
 
-// Veritabanı tablolarını oluştur
+// Veritabanını senkronize et ve server'ı başlat
 (async () => {
   try {
     // Veritabanını senkronize et
-    await sequelize.sync({ force: false }); // force: true, tabloları sıfırlar (dikkatli kullan!)
-    console.log('SQLite veritabanı başarıyla senkronize edildi.');
+    await sequelize.sync({ force: false }); // force: true, tüm tabloları sıfırlar
+    console.log('SQLite database has been synced successfully.');
 
     // Server'ı başlat
     app.listen(PORT, () => {
-      console.log(`Sunucu ${PORT} portunda çalışıyor.`);
+      console.log(`Server is working on port ${PORT}!`);
     });
   } catch (error) {
-    console.error('Veritabanı bağlantı hatası:', error);
+    console.error('DB Connection error:', error);
   }
 })();

@@ -1,12 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import { ObjectSchema } from 'joi';
 
-export const validateRequest = (schema: ObjectSchema) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.body);
+// validateRequest middleware'ini hem params hem de body ile çalışacak şekilde yapılandırıyoruz
+export const validateRequest = (schema: ObjectSchema, validateFor: 'params' | 'body' = 'body') => {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    // Şimdi params veya body üzerinde doğrulama yapabiliriz
+    const { error } = schema.validate(validateFor === 'params' ? req.params : req.body, { abortEarly: false });
+
     if (error) {
-      return res.status(400).json({ error: error.details[0].message }); // Hata mesajı döner
+      res.status(400).json({ error: error.details.map((err) => err.message) }); // Hataları array olarak döner
+      return;
     }
-    next(); // Bir sonraki middleware veya controller'a geç
+    next(); 
   };
 };
